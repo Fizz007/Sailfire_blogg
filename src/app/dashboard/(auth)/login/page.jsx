@@ -69,14 +69,14 @@ const Login = ({ url }) => {
       <Link className={styles.link} href="/dashboard/register">
         Create new account
       </Link>
-      {/* <button
+      <button
         onClick={() => {
           signIn("github");
         }}
         className={styles.button + " " + styles.github}
       >
         Login with Github
-      </button> */}
+      </button>
     </div>
   );
 };
