@@ -1,26 +1,31 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from "./page.module.css";
-import Link from "next/link";
-import Image from "next/image";
 
-async function getData() {
-  const res = await fetch(`https://sailfire-blogg.vercel.app/api/posts`, {
-    cache: "no-store",
-  });
+const Blog = () => {
+  const [value, setValue] = useState([]);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://sailfire-blogg.vercel.app/api/posts');
+      const data = await res.json();
+      setValue(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
-  return res.json();
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-const Blog = async () => {
-  const data = await getData();
   return (
     <div className={styles.mainContainer}>
-      {data.map((item) => (
-        <Link href={`/blog/${item._id}`} className={styles.container} key={item.id}>
+      {value && value.map((item) => (
+        <Link href={`/blog/${item._id}`} className={styles.container} key={item._id}>
           <div className={styles.imageContainer}>
             <Image
               src={item.img}
