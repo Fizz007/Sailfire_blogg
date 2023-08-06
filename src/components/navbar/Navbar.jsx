@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { signOut, useSession } from "next-auth/react";
+import { HiOutlineBars3BottomRight } from "react-icons/hi2";
+import { RxCross2 } from "react-icons/rx";
 
 const links = [
   {
@@ -40,27 +42,44 @@ const links = [
 ];
 
 const Navbar = () => {
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
   const session = useSession();
 
   return (
-    <div className={styles.container}>
-      <Link href="/" className={styles.logo}>
-        Sailfire
-      </Link>
-      <div className={styles.links}>
-        <DarkModeToggle />
-        {links.map((link) => (
-          <Link key={link.id} href={link.url} className={styles.link}>
-            {link.title}
-          </Link>
-        ))}
-        {session.status === "authenticated" && (
-          <button className={styles.logout} onClick={signOut}>
-            Logout
-          </button>
-        )}
+    <>
+      <div className={styles.container}>
+        <Link href="/" className={styles.logo}>
+          Sailfire
+        </Link>
+        <div className="links">
+          <DarkModeToggle />                     
+              <div className={click ? "nav-options active" : "nav-options"}>
+                <div className="option-three">
+                  <ul className="linnk">                    
+                    <Link href='/' ><li>Home</li></Link>
+                    <Link href='/portfolio' ><li>Portfolio</li></Link>
+                    <Link href='/blog' ><li>Blog</li></Link>
+                    <Link href='/about' ><li>About</li></Link>
+                    <Link href='/contact' ><li>Contact</li></Link>
+                    <Link href='/dashboard' ><li>Dashboard</li></Link>                   
+                  </ul>
+                </div>
+              </div>
+            
+          {session.status === "authenticated" && (
+            <button className={styles.logout} onClick={signOut}>
+              Logout
+            </button>
+          )}
+        </div>
+        <div className={styles.mobilemenu}>
+          <div style={{ marginTop: "8px" }} onClick={handleClick}>
+            {click ? <RxCross2 /> : <HiOutlineBars3BottomRight />}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

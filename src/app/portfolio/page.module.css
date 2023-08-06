@@ -44,3 +44,16 @@
 .item:hover .title {
   color: #53c28b;
 }
+
+@media screen and (max-width: 769px) {
+  .title{
+    
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 426px) {
+  .title{
+    
+    font-size: 10px;
+  }
+}

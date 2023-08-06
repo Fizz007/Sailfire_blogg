@@ -15,7 +15,7 @@ a {
   color: inherit;
 }
 
-.theme{
+.theme {
   transition: 1s all ease;
 }
 
@@ -37,4 +37,72 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.links ,.linnk {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.option-three{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.option-three ul{
+  list-style: none;
+}
+
+
+
+@media screen and (max-width: 426px) {
+  .nav-options {
+    display: flex;
+    width: 100%;
+    height: 380px;
+    position: absolute;
+    top: 90px;
+    left: -100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    flex-direction: column;
+    list-style: none;
+    border-top: 2px solid gray;
+  }
+
+  .nav-options.active {
+    font-size: 24px;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease-in;
+    z-index: 1;
+    align-content: center;
+    padding-left: 0px;
+    background-color: #111;
+    color: #bbb;
+  }
+
+  .option-three {
+    width: 300px;
+  }
+
+  .option-three ul {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    margin: 0px 18px;
+    cursor: pointer;
+  }
+
+  .linnk li:first-child {
+    margin-top: 6px;
+  }
+
+  
 }
