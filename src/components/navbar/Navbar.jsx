@@ -56,8 +56,8 @@ const Navbar = () => {
           <DarkModeToggle />                     
               <div className={click ? "nav-options active" : "nav-options"}>
                 <div className="option-three">
-                  <ul className="linnk">                    
-                    <Link href='/' ><li>Home</li></Link>
+                  <ul className="linnk" onClick={handleClick}>                    
+                    <Link href='/'><li>Home</li></Link>
                     <Link href='/portfolio' ><li>Portfolio</li></Link>
                     <Link href='/blog' ><li>Blog</li></Link>
                     <Link href='/about' ><li>About</li></Link>
